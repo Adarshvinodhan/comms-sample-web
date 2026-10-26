@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "24"
+  # Baked into the bundle at build time; .env is gitignored so Netlify never sees it.
+  VITE_API_URL = "https://sample-backend-rndn.onrender.com"
