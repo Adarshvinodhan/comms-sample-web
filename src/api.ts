@@ -3,7 +3,7 @@ import type { DemoUser, ReceivedWebhook, Session } from './types';
 /** Calls to the sample app's own backend. Everything comms-related in the browser goes through @sminfotech/comms-react. */
 
 /** Empty means same origin (the Vite dev proxy, or a reverse proxy routing /api to the backend). */
-const API_URL = (import.meta.env.VITE_API_URL ?? '').replace(/\/+$/, '');
+const API_URL = "https://sample-backend-rndn.onrender.com" 
 
 function api(path: string, init?: RequestInit): Promise<Response> {
   return fetch(`${API_URL}${path}`, init);
