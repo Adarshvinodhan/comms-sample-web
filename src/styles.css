@@ -1,0 +1,383 @@
+/* Sample app layout only. Comms component styles come from '@sminfotech/comms-react/styles.css'. */
+/* WhatsApp Web (light) palette. */
+:root {
+  --bg: #eae6df;
+  --panel: #ffffff;
+  --panel-2: #f0f2f5;
+  --border: #e9edef;
+  --text: #111b21;
+  --muted: #667781;
+  --accent: #00a884;
+  --ok: #25d366;
+  --warn: #f59e0b;
+  --danger: #ea0038;
+  font-family: 'Segoe UI', Helvetica Neue, Helvetica, 'Lucida Grande', Arial, Ubuntu, Cantarell, 'Fira Sans', sans-serif;
+  color: var(--text);
+  background: var(--bg);
+}
+
+/* Theme the comms tree. Loaded after the package stylesheet, so these win on `.comms-root`. */
+.comms-root {
+  --comms-surface: #ffffff;
+  --comms-surface-2: #f0f2f5;
+  --comms-surface-3: #ffffff;
+  --comms-border: #e9edef;
+  --comms-text: #111b21;
+  --comms-muted: #667781;
+  --comms-accent: #00a884;
+  --comms-accent-text: #ffffff;
+  --comms-ok: #25d366;
+  --comms-danger: #ea0038;
+  --comms-header: #f0f2f5;
+  --comms-chat-bg: #efeae2;
+  --comms-hover: #f5f6f6;
+  --comms-active: #f0f2f5;
+  --comms-active-border: transparent;
+  --comms-bubble-mine: #d9fdd3;
+  --comms-bubble-mine-text: #111b21;
+  --comms-bubble-theirs: #ffffff;
+  --comms-bubble-theirs-text: #111b21;
+  --comms-bubble-radius: 7.5px;
+  --comms-bubble-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+  --comms-system-bg: #ffffff;
+  --comms-system-text: #54656f;
+  --comms-badge: #25d366;
+  --comms-badge-text: #ffffff;
+  --comms-link: #027eb5;
+  --comms-input-bg: #ffffff;
+  --comms-offline: #8696a0;
+  --comms-failed: #fde8e8;
+  --comms-avatar-text: #ffffff;
+  --comms-backdrop: rgb(11 20 26 / 45%);
+}
+
+/* WhatsApp's call screen is dark. */
+.comms-call-screen {
+  --comms-surface: #202c33;
+  --comms-text: #e9edef;
+  --comms-muted: #8696a0;
+  --comms-border: #2a3942;
+  background: #0b141a;
+}
+
+/* WhatsApp-style bubbles: tighter padding, no borders on system chips. */
+.comms-bubble {
+  padding: 6px 9px 7px;
+  font-size: 14.2px;
+  line-height: 19px;
+}
+.comms-system-msg {
+  border: none;
+  border-radius: 7.5px;
+  box-shadow: 0 1px 0.5px rgba(11, 20, 26, 0.13);
+  font-size: 12.5px;
+}
+.comms-thread-header,
+.comms-composer {
+  border-color: #d1d7db;
+}
+.comms-composer .comms-input {
+  border: none;
+  border-radius: 8px;
+}
+.comms-inbox-item {
+  border-radius: 0;
+  border-bottom: 1px solid var(--border);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
+button {
+  font: inherit;
+  color: #ffffff;
+  background: var(--accent);
+  border: 1px solid transparent;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+button.ghost {
+  color: var(--accent);
+  background: transparent;
+  border-color: #d1d7db;
+}
+button.small {
+  padding: 4px 8px;
+  font-size: 12px;
+}
+button.danger {
+  background: var(--danger);
+}
+button.link {
+  background: none;
+  border: none;
+  padding: 0;
+  color: #027eb5;
+  text-decoration: underline;
+  font-size: inherit;
+}
+
+pre {
+  background: #f7f8fa;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 11px;
+  max-height: 320px;
+  overflow: auto;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+
+.muted {
+  color: var(--muted);
+}
+.small {
+  font-size: 12px;
+}
+.ok {
+  color: var(--ok);
+}
+.warn {
+  color: var(--warn);
+}
+.error {
+  color: var(--danger);
+}
+.center {
+  display: grid;
+  place-items: center;
+  height: 100%;
+  min-height: 200px;
+  text-align: center;
+}
+.row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.gap {
+  gap: 12px;
+}
+
+/* Login */
+.login {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+.login-card {
+  width: min(560px, 100%);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px;
+}
+.login-card h1 {
+  margin-top: 0;
+}
+.login-users {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.login-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: var(--text);
+  background: var(--panel-2);
+  border-color: var(--border);
+  text-align: left;
+}
+.login-user:hover {
+  background: #e9edef;
+}
+.login {
+  background: linear-gradient(#00a884 0 220px, var(--bg) 220px);
+}
+
+/* Layout */
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(200px, 280px) minmax(0, 1fr) minmax(220px, 300px);
+  height: 100vh;
+}
+@media (max-width: 900px) {
+  .workspace {
+    grid-template-columns: minmax(180px, 240px) minmax(0, 1fr);
+  }
+  .side-panel {
+    display: none;
+  }
+}
+
+/* Phones: one column. Inbox first, thread (with a back button) once a conversation is open. */
+@media (max-width: 700px) {
+  .workspace {
+    grid-template-columns: 1fr;
+    height: 100dvh;
+  }
+  .sidebar {
+    border-right: none;
+  }
+  .workspace.has-active .sidebar,
+  .workspace:not(.has-active) .main {
+    display: none;
+  }
+  .mobile-back {
+    display: block;
+    margin: 8px 8px 0;
+    align-self: flex-start;
+  }
+  .comms-thread-header .comms-btn {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  .comms-msg {
+    max-width: 85%;
+  }
+  .comms-call-screen {
+    inset: 0;
+    border-radius: 0;
+  }
+  .login-card {
+    padding: 20px;
+  }
+}
+.main {
+  min-width: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+.main > .comms-thread {
+  flex: 1;
+  min-height: 0;
+}
+.mobile-back {
+  display: none;
+}
+.sidebar,
+.side-panel {
+  background: var(--panel);
+  border-right: 1px solid var(--border);
+  overflow-y: auto;
+  padding: 12px;
+}
+.side-panel {
+  border-right: none;
+  border-left: 1px solid var(--border);
+}
+.sidebar h4 {
+  margin: 16px 4px 8px;
+  color: var(--muted);
+  text-transform: uppercase;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+}
+.me {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: -12px -12px 0;
+  padding: 10px 12px;
+  background: var(--panel-2);
+  border-bottom: 1px solid #d1d7db;
+}
+.me-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.contacts {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.contact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  color: var(--text);
+  background: transparent;
+  text-align: left;
+  border-radius: 0;
+  padding: 8px;
+}
+.contact:hover {
+  background: #f5f6f6;
+}
+.contact.other-org {
+  opacity: 0.6;
+}
+
+/* Side panel */
+.tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 12px;
+}
+.tabs button {
+  flex: 1;
+  color: var(--muted);
+  background: transparent;
+  border-color: #d1d7db;
+  font-size: 12px;
+  padding: 6px;
+}
+.tabs button.active {
+  color: #ffffff;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+.webhook-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.webhook-list li {
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border);
+}
+.my-data {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Toasts */
+.toasts {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  z-index: 2000;
+}
+.toast {
+  color: #ffffff;
+  background: #3b4a54;
+  border: 1px solid transparent;
+  padding: 10px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(11, 20, 26, 0.26);
+}
+.toast.error {
+  border-color: var(--danger);
+}
